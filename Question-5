@@ -1,1 +1,30 @@
+public class Question-5 {
+
+    public static int compress(char[] chars) {
+        int index = 0;
+        int count = 1;
+
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == chars[index]) {
+                count++;
+            } else {
+                chars[index++] = chars[i - 1];
+                chars[index++] = (char) (count + '0');
+                count = 1;
+            }
+        }
+
+        chars[index++] = chars[chars.length - 1];
+        chars[index++] = (char) (count + '0');
+
+        return index;
+    }
+
+    public static void main(String[] args) {
+        char[] chars = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+        int newLength = compress(chars);
+
+        System.out.println("The compressed string is: " + new String(chars, 0, newLength));
+    }
+}
 
