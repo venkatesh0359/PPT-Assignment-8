@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Question-7 {
+public class Question7 {
 
     public static String decode(String s) {
         Stack<Character> stack = new Stack<>();
