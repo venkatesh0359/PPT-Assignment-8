@@ -1,1 +1,42 @@
+import java.util.*;
+
+public class Question-6 {
+
+    public static List<Integer> findAnagrams(String s, String p) {
+        List<Integer> anagrams = new ArrayList<>();
+
+        int[] charCount = new int[26];
+        for (char c : p.toCharArray()) {
+            charCount[c - 'a']++;
+        }
+
+        int windowStart = 0;
+        int windowEnd = 0;
+
+        while (windowEnd < s.length()) {
+            char c = s.charAt(windowEnd++);
+            charCount[c - 'a']--;
+
+            while (windowEnd - windowStart >= p.length()) {
+                char d = s.charAt(windowStart++);
+                charCount[d - 'a']++;
+
+                if (Arrays.equals(charCount, new int[26])) {
+                    anagrams.add(windowStart - p.length());
+                }
+            }
+        }
+
+        return anagrams;
+    }
+
+    public static void main(String[] args) {
+        String s = "cbaebabacd";
+        String p = "abc";
+
+        List<Integer> anagrams = findAnagrams(s, p);
+
+        System.out.println(anagrams);
+    }
+}
 
