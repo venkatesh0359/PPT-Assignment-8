@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Question-6 {
+public class Question6 {
 
     public static List<Integer> findAnagrams(String s, String p) {
         List<Integer> anagrams = new ArrayList<>();
