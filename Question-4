@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Question-4 {
+public class Question4 {
 
     public static TreeNode constructTree(String s) {
         Stack<TreeNode> stack = new Stack<>();
