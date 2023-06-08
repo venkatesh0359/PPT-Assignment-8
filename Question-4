@@ -1,1 +1,62 @@
+import java.util.Stack;
+
+public class Question-4 {
+
+    public static TreeNode constructTree(String s) {
+        Stack<TreeNode> stack = new Stack<>();
+        int index = 0;
+        int val = 0;
+
+        while (index < s.length()) {
+            char c = s.charAt(index);
+
+            if (Character.isDigit(c)) {
+                val = val * 10 + c - '0';
+            } else if (c == '(') {
+                TreeNode node = new TreeNode(val);
+                stack.push(node);
+                val = 0;
+            } else if (c == ')') {
+                TreeNode node = stack.pop();
+                TreeNode left = stack.pop();
+                node.left = left;
+                node.right = constructTree(s.substring(index + 1, s.indexOf('(', index + 1)));
+                stack.push(node);
+                index = s.indexOf('(', index + 1);
+            }
+
+            index++;
+        }
+
+        return stack.pop();
+    }
+
+    public static void main(String[] args) {
+        String s = "4(2(3)(1))(6(5))";
+        TreeNode root = constructTree(s);
+        System.out.println(root);
+    }
+}
+
+class TreeNode {
+
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "val=" + val +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
+    }
+}
 
